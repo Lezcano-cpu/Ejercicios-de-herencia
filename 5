@@ -1,0 +1,49 @@
+from datetime import datetime
+
+class Producto:
+    def __init__(self, nombre, precio, fecha_vencimiento):
+        self.nombre = nombre [cite: 12]
+        self.precio = precio [cite: 12]
+        # Formato esperado de fecha: "AAAA-MM-DD"
+        self.fecha_vencimiento = datetime.strptime(fecha_vencimiento, "%Y-%m-%d") [cite: 12]
+        
+    def imprimir_detalles(self):
+        print(f"Producto: {self.nombre}")
+        print(f"Precio Base: ${self.precio:.2f}")
+        print(f"Vence: {self.fecha_vencimiento.strftime('%Y-%m-%d')}")
+
+class ProductoAlimenticio(Producto):
+    def __init__(self, nombre, precio, fecha_vencimiento):
+        super().__init__(nombre, precio, fecha_vencimiento)
+        
+    def aplicar_descuento(self): [cite: 13]
+        # Criterio: Si vence en menos de 5 días desde hoy, 30% de descuento [cite: 13]
+        hoy = datetime.now()
+        dias_restantes = (self.fecha_vencimiento - hoy).days
+        if 0 <= dias_restantes <= 5:
+            return self.precio * 0.30
+        return 0.0
+        
+    def imprimir_detalles(self):
+        super().imprimir_detalles()
+        descuento = self.aplicar_descuento()
+        print(f"Descuento por Vencimiento: ${descuento:.2f}")
+        print(f"Precio Final: ${(self.precio - descuento):.2f}")
+
+class ProductoElectrónico(Producto):
+    def __init__(self, nombre, precio, fecha_vencimiento, meses_garantia):
+        super().__init__(nombre, precio, fecha_vencimiento)
+        self.meses_garantia = meses_garantia
+        
+    def aplicar_descuento(self): [cite: 13]
+        # Criterio: Descuento fijo del 15% si tiene más de 12 meses de garantía [cite: 13]
+        if self.meses_garantia > 12:
+            return self.precio * 0.15
+        return 0.0
+        
+    def imprimir_detalles(self):
+        super().imprimir_detalles()
+        descuento = self.aplicar_descuento()
+        print(f"Garantía: {self.meses_garantia} meses")
+        print(f"Descuento Aplicado: ${descuento:.2f}")
+        print(f"Precio Final: ${(self.precio - descuento):.2f}")
