@@ -1,0 +1,51 @@
+class Tienda:
+    def __init__(self, nombre, direccion):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.inventario = {} # Diccionario {producto: cantidad}
+        self.total_ventas = 0.0
+        
+    def mostrar_informacion_general(self): [cite: 20]
+        print(f"Tienda: {self.nombre}") [cite: 20]
+        print(f"Dirección: {self.direccion}") [cite: 20]
+        print(f"Total de Ventas Acumuladas: ${self.total_ventas:.2f}") [cite: 20]
+
+class TiendaRopa(Tienda):
+    def __init__(self, nombre, direccion):
+        super().__init__(nombre, direccion)
+        
+    def agregar_inventario(self, prenda, cantidad): [cite: 20]
+        self.inventario[prenda] = self.inventario.get(prenda, 0) + cantidad [cite: 20]
+        
+    def eliminar_inventario(self, prenda, cantidad): [cite: 20]
+        if prenda in self.inventario and self.inventario[prenda] >= cantidad: [cite: 20]
+            self.inventario[prenda] -= cantidad [cite: 20]
+        else:
+            print(f"No hay suficiente stock de {prenda}")
+            
+    def registrar_venta(self, monto): [cite: 20]
+        self.total_ventas += monto [cite: 20]
+
+    def mostrar_detalles(self):
+        self.mostrar_informacion_general()
+        print(f"Inventario de Prendas: {self.inventario}")
+
+class TiendaElectrónica(Tienda):
+    def __init__(self, nombre, direccion):
+        super().__init__(nombre, direccion)
+        
+    def agregar_inventario(self, dispositivo, cantidad): [cite: 20]
+        self.inventario[dispositivo] = self.inventario.get(dispositivo, 0) + cantidad [cite: 20]
+        
+    def eliminar_inventario(self, dispositivo, cantidad): [cite: 20]
+        if dispositivo in self.inventario and self.inventario[dispositivo] >= cantidad: [cite: 20]
+            self.inventario[dispositivo] -= cantidad [cite: 20]
+        else:
+            print(f"No hay suficiente stock de {dispositivo}")
+            
+    def registrar_venta(self, monto): [cite: 20]
+        self.total_ventas += monto [cite: 20]
+
+    def mostrar_detalles(self):
+        self.mostrar_informacion_general()
+        print(f"Inventario de Electrónicos: {self.inventario}")
