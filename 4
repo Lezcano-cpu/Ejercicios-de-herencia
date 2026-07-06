@@ -1,0 +1,47 @@
+class Vehiculo:
+    def __init__(self, marca, modelo, anio):
+        self.marca = marca [cite: 10]
+        self.modelo = modelo [cite: 10]
+        self.anio = anio [cite: 10]
+        
+    def imprimir_detalles(self):
+        print(f"Vehículo: {self.marca} {self.modelo} ({self.anio})")
+
+class Automovil(Vehiculo):
+    def __init__(self, marca, modelo, anio, litros_tanque, kilometros_autonomia):
+        super().__init__(marca, modelo, anio)
+        self.litros_tanque = litros_tanque
+        self.kilometros_autonomia = kilometros_autonomia
+        
+    def calcular_eficiencia(self): [cite: 11]
+        # Kilómetros por litro
+        return self.kilometros_autonomia / self.litros_tanque
+        
+    def proyectar_combustible_viaje(self, distancia_km): [cite: 11]
+        eficiencia = self.calcular_eficiencia()
+        return distancia_km / eficiencia
+        
+    def imprimir_detalles(self, distancia_viaje_prueba=100):
+        super().imprimir_detalles()
+        eficiencia = self.calcular_eficiencia()
+        combustible_necesario = self.proyectar_combustible_viaje(distancia_viaje_prueba)
+        print(f"Eficiencia: {eficiencia:.2f} km/l")
+        print(f"Combustible estimado para {distancia_viaje_prueba} km: {combustible_necesario:.2f} litros")
+
+class Motocicleta(Vehiculo):
+    def __init__(self, marca, modelo, anio, cilindrada, kilometros_por_litro):
+        super().__init__(marca, modelo, anio)
+        self.cilindrada = cilindrada
+        self.kilometros_por_litro = kilometros_por_litro
+        
+    def calcular_eficiencia(self): [cite: 11]
+        return self.kilometros_por_litro
+        
+    def proyectar_combustible_viaje(self, distancia_km): [cite: 11]
+        return distancia_km / self.kilometros_por_litro
+        
+    def imprimir_detalles(self, distancia_viaje_prueba=100):
+        super().imprimir_detalles()
+        print(f"Cilindrada: {self.cilindrada} cc")
+        print(f"Eficiencia: {self.calcular_eficiencia():.2f} km/l")
+        print(f"Combustible estimado para {distancia_viaje_prueba} km: {self.proyectar_combustible_viaje(distancia_viaje_prueba):.2f} litros")
