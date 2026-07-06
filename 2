@@ -1,0 +1,44 @@
+class Empleado:
+    def __init__(self, nombre, salario, cargo):
+        self.nombre = nombre
+        self.salario = salario
+        self.cargo = cargo
+    
+    def imprimir_detalles(self):
+        print(f"Empleado: {self.nombre}")
+        print(f"Cargo: {self.cargo}")
+        print(f"Salario Base: ${self.salario:.2f}")
+
+class Gerente(Empleado):
+    def __init__(self, nombre, salario, bono_proyectos):
+        super().__init__(nombre, salario, "Gerente")
+        self.bono_proyectos = bono_proyectos
+    
+    def calcular_aumento(self):
+        # Criterio: Aumento del 10% del salario base más un bono por proyectos
+        return (self.salario * 0.10) + self.bono_proyectos
+    
+    def imprimir_detalles(self):
+        super().imprimir_detalles()
+        aumento = self.calcular_aumento()
+        print(f"Bono por Proyectos: ${self.bono_proyectos:.2f}")
+        print(f"Aumento Calculado: ${aumento:.2f}")
+        print(f"Salario Total: ${(self.salario + aumento):.2f}")
+
+class EmpleadoTemporal(Empleado):
+    def __init__(self, nombre, salario, meses_contrato):
+        super().__init__(nombre, salario, "Empleado Temporal")
+        self.meses_contrato = meses_contrato
+    
+    def calcular_aumento(self):
+        # Criterio: Aumento del 5% si el contrato es mayor a 6 meses
+        if self.meses_contrato > 6:
+            return self.salario * 0.05
+        return 0.0
+    
+    def imprimir_detalles(self):
+        super().imprimir_detalles()
+        aumento = self.calcular_aumento()
+        print(f"Meses de Contrato: {self.meses_contrato}")
+        print(f"Aumento Calculado: ${aumento:.2f}")
+        print(f"Salario Total: ${(self.salario + aumento):.2f}")
