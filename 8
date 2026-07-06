@@ -1,0 +1,41 @@
+class Transporte:
+    def __init__(self, tipo, capacidad, velocidad_maxima):
+        self.tipo = tipo
+        self.capacidad = capacidad [cite: 17]
+        self.velocidad_maxima = velocidad_maxima [cite: 17]
+        
+    def imprimir_detalles_generales(self):
+        print(f"Transporte: {self.tipo}")
+        print(f"Capacidad: {self.capacidad} pasajeros")
+        print(f"Velocidad Máxima: {self.velocidad_maxima} km/h")
+
+class Avion(Transporte):
+    def __init__(self, capacidad, velocidad_maxima, altitud_maxima):
+        super().__init__("Avión", capacidad, velocidad_maxima)
+        self.altitud_maxima = altitud_maxima
+        
+    def calcular_tiempo_viaje(self, distancia_km): [cite: 18]
+        # Se asume velocidad crucero igual al 90% de la máxima [cite: 18]
+        velocidad_crucero = self.velocidad_maxima * 0.9
+        return distancia_km / velocidad_crucero [cite: 18]
+        
+    def imprimir_detalles(self, distancia_prueba):
+        self.imprimir_detalles_generales()
+        print(f"Altitud Máxima: {self.altitud_maxima} pies")
+        tiempo = self.calcular_tiempo_viaje(distancia_prueba)
+        print(f"Tiempo estimado para {distancia_prueba} km: {tiempo:.2f} horas")
+
+class Barco(Transporte):
+    def __init__(self, capacidad, velocidad_maxima, tonelaje):
+        super().__init__("Barco", capacidad, velocidad_maxima)
+        self.tonelaje = tonelaje
+        
+    def calcular_tiempo_viaje(self, distancia_nautica_km): [cite: 18]
+        # Se asume velocidad constante [cite: 18]
+        return distancia_nautica_km / self.velocidad_maxima [cite: 18]
+        
+    def imprimir_detalles(self, distancia_prueba):
+        self.imprimir_detalles_generales()
+        print(f"Tonelaje: {self.tonelaje} TRB")
+        tiempo = self.calcular_tiempo_viaje(distancia_prueba)
+        print(f"Tiempo estimado para {distancia_prueba} km: {tiempo:.2f} horas")
