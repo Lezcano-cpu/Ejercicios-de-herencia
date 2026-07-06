@@ -1,0 +1,39 @@
+class Pago:
+    def __init__(self, monto, fecha):
+        self.monto = monto [cite: 21]
+        self.fecha = fecha [cite: 21]
+        
+    def mostrar_detalles_pago(self): [cite: 22]
+        print(f"Monto: ${self.monto:.2f}") [cite: 22]
+        print(f"Fecha: {self.fecha}") [cite: 22]
+
+class PagoTarjeta(Pago):
+    def __init__(self, monto, fecha, numero_tarjeta, banco):
+        super().__init__(monto, fecha)
+        self.numero_tarjeta = numero_tarjeta
+        self.banco = banco
+        
+    def procesar_pago(self): [cite: 22]
+        return f"Procesando cargo de ${self.monto:.2f} a la tarjeta finalizada en {self.numero_tarjeta[-4:]}." [cite: 22]
+        
+    def generar_recibo(self): [cite: 22]
+        print("------- RECIBO TARJETA -------") [cite: 22]
+        self.mostrar_detalles_pago() [cite: 22]
+        print(f"Banco: {self.banco}") [cite: 22]
+        print(f"Estado: APROBADO") [cite: 22]
+        print("------------------------------")
+
+class PagoPayPal(Pago):
+    def __init__(self, monto, fecha, correo_usuario):
+        super().__init__(monto, fecha)
+        self.correo_usuario = correo_usuario
+        
+    def procesar_pago(self): [cite: 22]
+        return f"Conectando con PayPal para el usuario {self.correo_usuario} por un monto de ${self.monto:.2f}." [cite: 22]
+        
+    def generar_recibo(self): [cite: 22]
+        print("------- RECIBO PAYPAL -------") [cite: 22]
+        self.mostrar_detalles_pago() [cite: 22]
+        print(f"Cuenta: {self.correo_usuario}") [cite: 22]
+        print(f"Estado: COMPLETADO") [cite: 22]
+        print("-----------------------------")
