@@ -1,0 +1,37 @@
+class Instrumento:
+    def __init__(self, nombre, material):
+        self.nombre = nombre [cite: 16]
+        self.material = material [cite: 16]
+        
+    def indicar_tipo_sonido(self, tipo): [cite: 16]
+        print(f"El instrumento {self.nombre} produce un sonido de tipo: {tipo}") [cite: 16]
+
+class Guitarra(Instrumento):
+    def __init__(self, material, num_cuerdas):
+        super().__init__("Guitarra", material)
+        self.num_cuerdas = num_cuerdas
+        
+    def tocar_nota(self, nota): [cite: 16]
+        return f"Rasgando la cuerda para la nota {nota}" [cite: 16]
+        
+    def imprimir_detalles(self):
+        print(f"Instrumento: {self.nombre}")
+        print(f"Material: {self.material}")
+        print(f"Número de cuerdas: {self.num_cuerdas}")
+        self.indicar_tipo_sonido("Acústico / Cuerda pulsada") [cite: 16]
+        print(f"Prueba de sonido: {self.tocar_nota('Do')}")
+
+class Piano(Instrumento):
+    def __init__(self, material, num_teclas):
+        super().__init__("Piano", material)
+        self.num_teclas = num_teclas
+        
+    def tocar_nota(self, nota): [cite: 16]
+        return f"Presionando la tecla para la nota {nota}" [cite: 16]
+        
+    def imprimir_detalles(self):
+        print(f"Instrumento: {self.nombre}")
+        print(f"Material: {self.material}")
+        print(f"Número de teclas: {self.num_teclas}")
+        self.indicar_tipo_sonido("Percutido / Cuerda percutida") [cite: 16]
+        print(f"Prueba de sonido: {self.tocar_nota('Sol')}")
